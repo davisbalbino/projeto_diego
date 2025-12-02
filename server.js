@@ -6,6 +6,17 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const uploadsDir = path.join(__dirname, "uploads");
+const tempDir = path.join(uploadsDir, "temp");
+
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+if (!fs.existsSync(tempDir)) {
+  fs.mkdirSync(tempDir);
+}
+
+
 // Middleware para servir frontend
 app.use(express.static("public"));
 app.use(express.json());
